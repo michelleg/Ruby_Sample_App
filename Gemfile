@@ -1,12 +1,15 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
+gem 'pg', '0.12.2'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 group :development, :test do
-	gem 'sqlite3', '1.3.5'
 	gem 'rspec-rails','2.10.0'
+	gem 'pg', '0.12.2'
+	gem 'guard-rspec','0.5.5'
+	gem 'sqlite3'
 end
 # Gems used only for assets and not required
 # in production environments by default.
@@ -38,6 +41,11 @@ gem 'jquery-rails'
 # gem 'debugger'
 group :test do
 	gem 'capybara', '1.1.2'
+	gem 'rspec-rails','2.10.0'
+	gem 'rb-fsevent', '0.4.3.1', :require => false
+	gem 'growl', '1.0.3'
+	gem 'guard-spork', '0.3.2'
+	gem 'spork', '0.9.0'
 end
 group :production do
 	gem 'pg','0.12.2'
