@@ -11,6 +11,8 @@ group :development, :test do
 	gem 'pg', '0.12.2'
 	gem 'guard-rspec','0.5.5'
 	gem 'sqlite3'
+	gem 'bcrypt-ruby', '3.0.1'
+	gem 'factory_girl_rails', '1.4.0'
 end
 
 gem 'annotate', '~> 2.4.1.beta', group: :development
