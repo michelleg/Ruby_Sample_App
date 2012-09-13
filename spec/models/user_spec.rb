@@ -36,7 +36,7 @@ describe User do
       expect do
         User.new(admin: "1")
       end.should raise_error(ActiveModel::MassAssignmentSecurity::Error)
-      endt
+    end
     
   end
 
