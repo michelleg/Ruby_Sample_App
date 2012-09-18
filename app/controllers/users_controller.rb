@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_filter :signed_in_user, only: [:index, :edit, :update]
   before_filter :correct_user, only: [:edit, :update]
   before_filter :admin_user,   only: :destroy
+  before_filter  :not_signed_in, only: [:new, :create]
   def index
     @users = User.paginate(page: params[:page])
   end
@@ -32,7 +33,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id]);
     if @user.update_attributes(params[:user])
       sign_in @user
       flash[:success] = "Profile updated"
@@ -65,5 +65,10 @@ class UsersController < ApplicationController
 
     def admin_user
       redirect_to root_path unless current_user.admin?
+    end
+
+    def not_signed_in
+    
+      redirect_to current_user unless current_user.nil?
     end
 end
