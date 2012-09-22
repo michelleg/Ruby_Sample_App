@@ -1,3 +1,4 @@
+
 require 'spec_helper'
 
 describe "Authentication" do
@@ -67,15 +68,15 @@ describe "Authentication" do
 
                     describe "when signing in again" do
                         before do 
-                            click_link "Sign out"
-                            click_link "Sign in"
+                            visit signin_path
                             fill_in "Email",    with: user.email
                             fill_in "Password",  with: user.password
                             click_button "Sign in"
                         end
 
-                        it " should render the default (profile) page" do
+                        it "should render the default (profile) page" do
                             page.should have_selector('title', text: user.name)
+
                         end
 
                         
@@ -114,7 +115,20 @@ describe "Authentication" do
             end
         end
 
+        describe "in the Microposts controller" do
+            before { post microposts_path }
+            specify { response.should redirect_to(signin_path)}
+        end
+
+        describe "submitting to the destroy action" do
+            before { delete micropost_path(FactoryGirl.create(:micropost)) }
+            specify { response.should redirect_to(signin_path)}
+
+            
+        end
+
         describe "as wrong user" do
+
             let(:user) { FactoryGirl.create(:user)}
             let(:wrong_user) {FactoryGirl.create(:user, email:"wrong@example.com")}
             before { sign_in user}
@@ -133,6 +147,22 @@ describe "Authentication" do
             
         end
 
+        describe "as admin user to delete self" do
+            let(:admin) { FactoryGirl.create(:user)}
+            
+            before  do
+                sign_in admin
+                visit users_path
+            end
+
+            describe "submitting a Delete request to self" do
+                before { delete user_path(admin)}
+                specify { response.should redirect_to(root_path)}
+                
+            end
+            
+        end
+
         describe "as no-admin user" do
             let(:user) { FactoryGirl.create(:user)}
             let(:non_admin) { FactoryGirl.create(:user)}
@@ -145,6 +175,30 @@ describe "Authentication" do
                 
             end
             
+        end
+
+        describe "when current user attemping to signup" do
+            let(:user) { FactoryGirl.create(:user)}
+            
+            before { sign_in user}
+              
+            describe " signup a new user" do
+            
+                before { get new_user_path }
+                specify { response.should redirect_to(user_path(user))}
+            end
+        end
+
+        describe "when current user attemping to post signup" do
+            let(:user) { FactoryGirl.create(:user)}
+            
+            before { sign_in user}
+              
+            describe " post a signup for  new user" do
+            
+                before { post users_path }
+                specify { response.should redirect_to(user_path(user))}
+            end
         end
     end
 end
