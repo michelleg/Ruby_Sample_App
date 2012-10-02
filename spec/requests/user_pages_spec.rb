@@ -245,7 +245,7 @@ describe "User Pages" do
         describe "followers" do
             before do 
                 sign_in other_user
-                visit followers_user_path(user)
+                visit followers_user_path(other_user)
             end
 
             it { should have_selector('title', text: full_title('Followers'))}
