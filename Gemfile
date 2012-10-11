@@ -11,7 +11,6 @@ gem 'bootstrap-will_paginate', '0.0.6'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 group :development, :test do
 	gem 'rspec-rails','2.10.0'
-	gem 'pg', '0.12.2'
 	gem 'guard-rspec','0.5.5'
 	gem 'sqlite3'
 	gem 'bcrypt-ruby', '3.0.1'
@@ -59,6 +58,6 @@ group :test do
 	gem "cucumber-rails",'1.2.1', require: false
 	gem "database_cleaner", '0.7.0'
 end
-group :production do
-	gem 'pg','0.12.2'
-end
+#group :production do
+#	gem 'pg','0.12.2'
+#end
