@@ -1,8 +1,5 @@
 SampleApp::Application.routes.draw do
 
-
-
-
   resources :users do
     member do
       get :following, :followers
@@ -18,7 +15,7 @@ SampleApp::Application.routes.draw do
   resources :relationships, only: [:create, :destroy]
 
   root to: 'static_pages#home'
-  match '/help',    to: 'static_pages#help'
+  match '/favorite',    to: 'static_pages#favorite'
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
 

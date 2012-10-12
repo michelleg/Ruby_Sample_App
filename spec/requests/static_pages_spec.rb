@@ -12,7 +12,7 @@ describe "Static Pages" do
     describe "Home Page" do
     
 	    before { visit root_path }
-	    let(:heading)   { 'Sample App'}
+	    let(:heading)   { 'Twitter App'}
 	    let(:page_title) { '' }
 
 		it_should_behave_like "all static pages"
@@ -49,19 +49,19 @@ describe "Static Pages" do
     end
 
 
-	describe "Help Page" do
+	describe "Favorite Page" do
 
-		before { visit help_path }
-        let(:heading) { 'Help'}
-        let(:page_title) { 'Help'}
+		before { visit favorite_path }
+        let(:heading) { 'Favorite'}
+        let(:page_title) { 'Favorite'}
         it_should_behave_like "all static pages"
 		
 	end
 	
 	describe "About page" do
 		before { visit about_path }
-        let(:heading) { 'About Us'}
-        let(:page_title) { 'About Us'}
+        let(:heading) { 'About'}
+        let(:page_title) { 'About'}
         it_should_behave_like "all static pages"
 		
 	end
@@ -80,14 +80,14 @@ describe "Static Pages" do
 		page.should have_selector 'title', text: full_title('Sign in')
 		click_link "About"
 		page.should have_selector 'title', text: full_title('About')
-		click_link "Help"
-		page.should have_selector 'title', text: full_title('Help')
+		click_link "Favorite"
+		page.should have_selector 'title', text: full_title('Favorite')
 		click_link "Contact"
 		page.should have_selector 'title', text: full_title('Contact')
 		click_link "Home"
 		click_link "Sign up now!"
 		page.should have_selector 'title', text: full_title('Sign up')
-		click_link "sample app"
+		click_link "Twitter app"
 		page.should have_selector 'title', text: full_title('')
 	end
 end

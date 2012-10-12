@@ -240,3 +240,10 @@ overflow: auto;
 	margin: 1px 1px;
 	}
 }
+.nosquare {
+	list-style-type: none;
+	margin: 10px;
+	li {
+		line-height: 30px;
+	}
+}
